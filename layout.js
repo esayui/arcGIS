@@ -6,7 +6,6 @@
   var selectLayer;
   var geometryService;
   var symbol = new esri.symbol.SimpleMarkerSymbol(esri.symbol.SimpleMarkerSymbol.STYLE_SQUARE, 12, new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID, new dojo.Color([247, 0, 171, 0.9]), 2), new dojo.Color([247, 0, 171, 0.5]));
-  
  
  function initMap() {
    //get the localization strings
@@ -61,8 +60,6 @@
    } else {
      createApp();
    }
- 
-
  }
  
   function createApp() {
@@ -151,8 +148,6 @@ var layerDefinition = {
 	 infoTemplate: infoTemplate,
 	 id: 'range'
    });
-   //layer.setSelectionSymbol(null);
-   //rangeLayer.setSelectionSymbol(null);
 
    map.addLayer(layer);
    plotData();
@@ -195,7 +190,6 @@ var layerDefinition = {
  
  function select(geometry){
    toolbar.deactivate();
-        //map.graphics.clear();
         //select the points within the extent
         var query = new esri.tasks.Query();
         query.geometry = geometry;
@@ -228,9 +222,6 @@ var layerDefinition = {
    
  function activateTb(){
    tb.activate(esri.toolbars.Draw.EXTENT);
-   //toolbar.deactivate();
-  // tool.deactivate();
-   
  }
  
  function selectRange(extent){
@@ -259,7 +250,6 @@ var layerDefinition = {
     }
  
   function findPointsInExtent(geo) {	  
-	//var points;
     var query = new esri.tasks.Query();
         query.geometry = geo.getExtent();
         rangeLayer.selectFeatures(query,esri.layers.FeatureLayer.SELECTION_NEW);
@@ -299,7 +289,6 @@ var layerDefinition = {
   
 
  function showRange(position, graphic){
-	//rangeLayer.setOpacity(1);
    if (graphic.attributes.start == null){
    circle(position, graphic.attributes.radius, graphic.attributes.id, true);
   }
@@ -309,10 +298,7 @@ var layerDefinition = {
  
  function activateToolbar(){
    toolbar.activate(esri.toolbars.Draw.EXTENT);
-		//tb.deactivate();
-		//tool.deactivate();
-        
-      }
+	}
 
 function single(){
 var num;
@@ -364,8 +350,6 @@ var q = new esri.tasks.Query();
   var num = graphics.length;
   for (var i=0;i<num;i++)
 	setRanges(graphics[i]);
-  
-  //rangeLayer.setOpacity(0);
  }
  
  function clearSelect(){
@@ -440,7 +424,6 @@ var q = new esri.tasks.Query();
 		  point = [pos.x - Math.sin(-angle/2 - start)*subRad*(50-a), pos.y + Math.cos(-angle/2 - start)*subRad*(50-a)];
 		  points.push(point);
 		}
-		//points.push([pos.x, pos.y]);
 		for (var b=0;b<50;b++){
 		  point = [pos.x - Math.sin(angle/2 - start)*subRad*b, pos.y + Math.cos(angle/2 - start)*subRad*b];
 		  points.push(point);
@@ -463,24 +446,14 @@ var q = new esri.tasks.Query();
 		map.addLayer(selectLayer);
 		 var sym = new esri.symbol.SimpleFillSymbol(esri.symbol.SimpleFillSymbol.STYLE_SOLID, new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID, new dojo.Color([0,0,0]), 2), new dojo.Color([255,255,0,0.25]));
           var graphic = new esri.Graphic(geometry, sym);
-          //map.graphics.add(graphic);
-		 // selectLayer.setOpacity(1);
-		  selectLayer.applyEdits([graphic], null, null);
-		  
+       selectLayer.applyEdits([graphic], null, null);
 		 findPointsInExtent(geometry);
-		 //selectRange(geometry.getExtent());
       }
    
    function polygon(){
-	 //tb.deactivate();
-	 //toolbar.deactivate();
-	 //dojo.connect(dijit.byId('map'), 'resize', map,map.resize);
-
-       tool = new esri.toolbars.Draw(map);
-       
-       dojo.connect(tool, "onDrawEnd", addToMap);
-	  
-   tool.activate(esri.toolbars.Draw.FREEHAND_POLYGON);
-   dojo.disconnect();
+	 tool = new esri.toolbars.Draw(map);
+     dojo.connect(tool, "onDrawEnd", addToMap);
+	 tool.activate(esri.toolbars.Draw.FREEHAND_POLYGON);
+	 dojo.disconnect();
    }
  
