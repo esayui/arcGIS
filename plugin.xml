@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         id="application"
+         point="org.eclipse.core.runtime.applications">
+      <application>
+         <run
+               class="arcgis.Application">
+         </run>
+      </application>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            name="RCP Perspective"
+            class="arcgis.Perspective"
+            id="arcGIS.perspective">
+      </perspective>
+   </extension>
+   <extension
+         id="product"
+         point="org.eclipse.core.runtime.products">
+      <product
+            application="arcGIS.application"
+            name="arcGis">
+         <property
+               name="appName"
+               value="arcGis">
+         </property>
+      </product>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <category
+            id="arcgis"
+            name="%views.category.name"/>
+      <view
+            id="arcgis.browserView"
+            name="%views.browser.name"
+            icon="icons/eclipse.gif"
+            class="arcgis.BrowserView"
+            category="arcgis"/>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            name="Browser"
+            id="arcgis.commands.browserCategory"/>
+      <command
+            categoryId="arcgis.commands.browserCategory"
+            name="Back"
+            id="arcgis.commands.back"/>
+      <command
+            categoryId="arcgis.commands.browserCategory"
+            name="Forward"
+            id="arcgis.commands.forward"/>
+      <command
+            categoryId="arcgis.commands.browserCategory"
+            name="Stop"
+            id="arcgis.commands.stop"/>
+      <command
+            categoryId="arcgis.commands.browserCategory"
+            name="Refresh"
+            id="arcgis.commands.refresh"/>
+      <command
+            categoryId="arcgis.commands.browserCategory"
+            name="New Tab"
+            id="arcgis.commands.newTab"/>
+   </extension>
+
+</plugin>

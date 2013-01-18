@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=7" />
+   <link rel="stylesheet" type="text/css" href="http://serverapi.arcgisonline.com/jsapi/arcgis/3.2/js/dojo/dijit/themes/claro/claro.css">
+  <link rel="stylesheet" type="text/css" href="http://serverapi.arcgisonline.com/jsapi/arcgis/3.2/js/esri/css/esri.css" />
+<link rel="stylesheet" type="text/css" href="css/layout.css">
+
+  <script type="text/javascript">
+      var djConfig = {
+        parseOnLoad: true,
+		packages:[
+		  {name:"esriTemplate",location:location.pathname.replace(/\/[^/]+$/, '')}
+		]
+      };
+  </script>
+  <script type="text/javascript" src="http://serverapi.arcgisonline.com/jsapi/arcgis/?v=3.2">    
+  </script>
+  <script type="text/javascript" src="javascript/layout.js">
+  </script>
+  <script type="text/javascript">
+    dojo.require("dijit.dijit"); // optimize: load dijit layer
+    dojo.require("dijit.layout.BorderContainer");
+    dojo.require("dijit.layout.ContentPane");
+    dojo.require("esri.map");
+    dojo.require("esri.arcgis.utils");
+    dojo.require("esri.layers.FeatureLayer");
+    dojo.require("esri.IdentityManager");
+    dojo.require('esri.dijit.Attribution');
+    dojo.requireLocalization("esriTemplate","template");
+	dojo.require("esri.toolbars.draw");
+    
+  </script>
+
+<script type="text/javascript">
+
+    var configOptions;
+    
+    function init() {
+      configOptions = {
+        webmap:"91ab1a91756941809d3f3f71af1927e5",
+        appid:"",
+        title:"arcGIS",
+        sharingurl:"http://www.arcgis.com/sharing/content/items",
+        geometryserviceurl:"http://tasks.arcgisonline.com/ArcGIS/rest/services/Geometry/GeometryServer",
+        proxyurl: "",
+        bingMapsKey:"",
+        owner:""
+        
+      };
+      initMap();
+    }
+   
+    dojo.addOnLoad(init);
+  </script>
+
+</head>
+
+<body class="claro">
+<div dojotype="dijit.layout.BorderContainer" id="mainWindow">
+    
+    <div dojotype="dijit.layout.ContentPane" region="left" id="map"></div>
+ 
+</div>
+</body>
+</html>
